@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Staff</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<h1 class="bg-dark text-light">Staff Enrollment</h1>
+
+<body>
+  <div class="container">
+    <h1>Team Members</h1>
+    
+    <!-- Table -->
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Position</th>
+            <th>Name</th>
+            <th>ID Number</th>
+            <th>Start Date</th>
+            <th>Terminate</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <tr>
+            <td>Manager</td>
+            <td>Arnaud Solefack</td>
+            <td>1234</td>
+            <td>01/01/2001</td>
+            <td><button class="btn btn-danger btn-sm delete-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Assistant Manager</td>
+            <td>Jenny Le</td>
+            <td>2345</td>
+            <td>02/03/2002</td>
+            <td><button class="btn btn-danger btn-sm delete-btn">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+    <!-- Form -->
+    <form id="myForm">
+      <div class="form-group">
+        <label for="positionInput">Position:</label>
+        <input type="text" class="form-control" id="positionInput" required>
+      </div>
+      <div class="form-group">
+        <label for="nameInput">Name:</label>
+        <input type="text" class="form-control" id="nameInput" required>
+      </div>
+      <div class="form-group">
+        <label for="idInput">ID Number:</label>
+        <input type="id" class="form-control" id="idInput" required>
+      </div>
+
+      <div class="form-group">
+        <label for="start-dateInput">Start Date</label>
+        <input type="text" class="form-control" id="start-dateInput">
+      </div>
+      <button type="submit" class="btn btn-primary">Enter</button>
+      
+    </form>
+  </div>
+
+  <script src="index.js"></script>
+  <script src="node_modules/jquery/dist/jquery.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+  
+
+
+
+  <script>
+    // Add new row to the table
+    $('#myForm').submit(function(e) {
+      e.preventDefault();
+
+      var position = $('#positionInput').val();
+      var name = $('#nameInput').val();
+      var id = $('#idInput').val();
+      var start = $('#start-dateInput').val();
+      
+      
+
+      var newRow = '<tr><td>' + position + '</td><td>' + name + '</td><td>' + id + '</td><td>' + start + '</td><td><button class="btn btn-danger btn-sm delete-btn">Delete</button></td></tr>';
+      $('#tableBody').append(newRow);
+
+
+      // Clear the form inputs
+      $('#positionInput').val('');
+      $('#nameInput').val('');
+      $('#idInput').val('');
+      $('#start-dateInput').val('');
+    });
+
+       // Delete row from the table
+       $('#tableBody').on('click', '.delete-btn', function() {
+      $(this).closest('tr').remove();
+    });
+  </script>
+</body>
+</html>
